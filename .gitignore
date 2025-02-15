@@ -1,0 +1,7 @@
+.gradle/
+.idea/
+.vscode/
+build/
+out/
+**credentials.properties**
+*.p12
