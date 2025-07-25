@@ -1,0 +1,75 @@
+DNS Message:
+
++---------------------+
+|        Header       |  --> 12 bytes
++---------------------+
+|     Question        |  --> query details
++---------------------+
+|     Answer          |  --> resource records (in responses)
++---------------------+
+|     Authority       |  --> authoritative name servers
++---------------------+
+|     Additional      |  --> additional info (e.g., IP of NS)
++---------------------+
+
+Header:
+
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|           ID (Transaction ID)                 |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|QR| OPCODE |AA|TC|RD|RA| Z |AD|CD|   RCODE     |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|          QDCOUNT (questions)                  |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|          ANCOUNT (answers)                    |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|          NSCOUNT (authority records)          |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|          ARCOUNT (additional records)         |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+Key Fields:
+ID: Identifies the request/response pair.
+
+QR: 0 = query, 1 = response.
+
+OPCODE: Usually 0 (standard query).
+
+AA: Authoritative Answer.
+
+RD: Recursion Desired.
+
+RA: Recursion Available.
+
+RCODE: Response code (0 = No error).
+
+QDCOUNT/ANCOUNT/NSCOUNT/ARCOUNT: Number of entries in respective
+
+Question:
++---------------------------------------------+
+|                QNAME                        |
++---------------------------------------------+
+|                QTYPE                        |
++---------------------------------------------+
+|                QCLASS                       |
++---------------------------------------------+
+
+Answer
++---------------------------------------------+
+|                NAME                         |
++---------------------------------------------+
+|                TYPE                         |
++---------------------------------------------+
+|                CLASS                        |
++---------------------------------------------+
+|                TTL                          |
++---------------------------------------------+
+|                RDLENGTH                     |
++---------------------------------------------+
+|                RDATA                        |
++---------------------------------------------+
+
+
+
+
+
