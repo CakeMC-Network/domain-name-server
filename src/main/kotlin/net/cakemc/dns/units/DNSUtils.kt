@@ -1,5 +1,11 @@
-package net.cakemc.dns
+package net.cakemc.dns.units
 
+import net.cakemc.dns.DnsRecord
+import net.cakemc.dns.DnsResponse
+import net.cakemc.dns.records.UnknownRecord
+import net.cakemc.dns.types.DNSClass
+import net.cakemc.dns.types.DNSFlags
+import net.cakemc.dns.types.DNSRecordType
 import java.io.ByteArrayOutputStream
 import java.net.InetAddress
 import java.nio.ByteBuffer

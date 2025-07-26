@@ -1,4 +1,4 @@
-package net.cakemc.dns;
+package net.cakemc.dns.types;
 
 enum class DNSClass(val code: Int) {
     IN(1),   // Internet

@@ -1,4 +1,4 @@
-package net.cakemc.dns
+package net.cakemc.dns.types
 
 enum class DNSFlags(val mask: Int) {
     QR(0x8000),      // Query/Response

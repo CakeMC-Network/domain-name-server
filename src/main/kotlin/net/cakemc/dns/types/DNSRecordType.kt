@@ -1,5 +1,7 @@
-package net.cakemc.dns
+package net.cakemc.dns.types
 
+import net.cakemc.dns.DnsRecord
+import net.cakemc.dns.records.*
 import kotlin.reflect.KClass
 
 enum class DNSRecordType(val code: Int, val recordClass: KClass<out DnsRecord>) {

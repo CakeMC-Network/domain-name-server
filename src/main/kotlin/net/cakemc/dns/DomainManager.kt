@@ -1,22 +1,19 @@
 package net.cakemc.dns
 
-object DNSMockServer {
-    private val records = mutableListOf<DnsRecord>()
+import net.cakemc.dns.register.DnsRegistry
+import net.cakemc.dns.types.DNSRecordType
+import net.cakemc.dns.units.DNSUtils
 
-    fun addRecord(record: DnsRecord) {
-        records += record
-    }
-
-    fun findMatchingRecord(name: String, type: DNSRecordType): DnsRecord? {
-        return records.find { it.name == name && it.type == type }
-    }
+class DomainManager(
+    val dnsRegistry: DnsRegistry
+) {
 
     fun createResponse(query: ByteArray): ByteArray {
-        val domain = extractDomain(query)
+        val domain = extractHostName(query)
         val typeCode = ((query[query.lastIndex - 3].toInt() and 0xFF) shl 8) or (query[query.lastIndex - 2].toInt() and 0xFF)
         val type = DNSRecordType.fromCode(typeCode)
 
-        val matched = findMatchingRecord(domain, type)
+        val matched = dnsRegistry.findMatchingRecord(domain, type)
         return if (matched != null) {
             DNSUtils.buildResponse(query, matched)
         } else {
@@ -24,7 +21,7 @@ object DNSMockServer {
         }
     }
 
-    private fun extractDomain(query: ByteArray): String {
+    private fun extractHostName(query: ByteArray): String {
         var index = 12
         val parts = mutableListOf<String>()
         while (query[index] != 0.toByte()) {
